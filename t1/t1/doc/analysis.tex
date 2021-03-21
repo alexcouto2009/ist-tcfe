@@ -1,0 +1,114 @@
+\section{Theoretical Analysis}
+\label{sec:analysis}
+
+In this section, the circuit shown in Figure \ref{fig:rc} is analysed
+theoretically, in terms of its response when submited to a voltage in
+voltage source $V_a$ and a current in the current source $I_d$, using
+Octave.
+
+The circuit consists of four loops, where on the top left loop (loop 1) flows a current $I_a$,
+on the top right (loop 2) flows a current $I_b$, on the bottom left (loop 3) a current $I_c$
+and on bottom right loop (loop 4) a current $I_d$, all of them assigned to be flowing counterclockwise for
+the mesh analysis. The voltage and current sources, $v_a$ and $I_d$, receive countinuous inputs and in order to analyse the circuit
+we have to measure the voltage in each node and the current flowing in each loop.
+For this purpose we will apply both the Kirchhoff Voltage Law (KVL) and Kirchhoff
+Current Law (KCL). \par
+Starting the analysis using KVL, we obtain four equations correspondent to each loop:
+
+\begin{equation}
+  R_1I_a + R_3(I_a - I_b) + R_4(I_a - I_c) = -V_a ;
+  \label{eq:kvl1}
+\end{equation}
+
+\begin{equation}
+  K_bR_3(-I_a + I_b) - I_b = 0;
+  \label{eq:kvl2}
+\end{equation}
+
+\begin{equation}
+  R_4(-I_a + I_c) + R_6I_c + R_7I_c - K_cI_c = 0;
+  \label{eq:kvl3}
+\end{equation}
+
+\begin{equation}
+  I_d = I_d.
+  \label{eq:kvl4}
+\end{equation}
+
+Using Octave, we can solve this system of equations easily using matrix operations obtaining the following
+solution for the currents:
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/tabela1}
+  \end{tabular}
+  \caption{Results using mesh method}
+  \label{tab:tabela1}
+\end{table}
+
+As for the analysis using KCL, since we have 8 different nodes we must have 8 different equations
+in order to have a solvable system of equations, therefore we obtain the following set of equations:
+
+\begin{equation}
+  V_0 = 0;
+  \label{eq:kcl1}
+\end{equation}
+
+\begin{equation}
+  V_1 = V_a;
+  \label{eq:kcl2}
+\end{equation}
+
+\begin{equation}
+  \frac{V_2 - V_1}{R_1} + \frac{V_2 - V_3}{R_2} + \frac{V_2 - V_4}{R_4}= 0;
+  \label{eq:kcl3}
+\end{equation}
+
+\begin{equation}
+  \frac{V_3 - V_2}{R_2} - K_b(V_2 - V_4) = 0;
+  \label{eq:kcl4}
+\end{equation}
+
+\begin{equation}
+  K_b(V_2 - V_4) + \frac{V_5 - V_4}{R_5} = I_d;
+  \label{eq:kcl5}
+\end{equation}
+
+\begin{equation}
+  \frac{V_6}{R_6} + \frac{V_6 - V_7}{R_7} = 0;
+  \label{eq:kcl6}
+\end{equation}
+
+\begin{equation}
+  V_4 - K_c\frac{V_6}{R_6} - V_7 =0;
+  \label{eq:kcl7}
+\end{equation}
+
+\begin{equation}
+  \frac{V_4}{R_4} + \frac{V_4 - V_2}{R_3} + \frac{V_4 - V_5}{R_5} + \frac{V_7 - V_6}{R_7} = -I_d,
+  \label{eq:kcl8}
+\end{equation}
+
+being \textbf{Equation \ref{eq:kcl1}} referent to node 0,\textbf{Equation \ref{eq:kcl2}} to node 1, \textbf{Equation \ref{eq:kcl3}} to node 2,
+\textbf{Equation \ref{eq:kcl4}} to node 3, \textbf{Equation \ref{eq:kcl5}} to node 5, \textbf{Equation \ref{eq:kcl6}} to node 6, \textbf{Equation \ref{eq:kcl7}}
+to the linear current dependent voltage source and \textbf{Equation \ref{eq:kcl8}} to the sum of both nodes 4 and 7.
+
+Using Octave, we can solve this system of equations easily using matrix operations obtaining the following
+solution for the voltages:
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat1/tabela2}
+  \end{tabular}
+  \caption{Results using nodes method}
+  \label{tab:tabela2}
+\end{table}
+
+As expected from theory, both methods present the same results as can be seen in tables \ref{tab:tabela1} and \ref{tab:tabela2}.
+

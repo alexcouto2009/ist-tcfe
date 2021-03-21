@@ -1,0 +1,148 @@
+Trabalho laboratorial 1
+
+*
+
+*Script simulação NGSPICE
+
+*
+
+***********************************
+
+
+
+*Alexandre Couto, 95766
+
+*Bruno Pinto, 95774
+
+*Hugo Aranha, 95796
+
+
+
+***********************************
+
+*Descrição circuito
+
+
+
+.options savecurrents
+
+
+
+Va 1 0 5.1951993125      ; Tensão
+
+
+
+R1 1 2 1.03055897104k      ; Resistência R1
+
+R2 2 3 2.07633317652k      ; Resistência R2
+
+R3 2 4 3.11228971368k      ; Resistência R3
+
+R4 4 0 4.1814130542k    ; Resistência R4
+
+R5 4 5 3.06747464193k      ; Resistência R5
+
+R6 0 6 2.01035149284k      ; Resistência R6
+
+R7 8 7 1.00587624853k     ; Resistência R7
+
+
+
+
+
+Id 7 5 1.04139652596m       ; Corrente
+
+Hc 4 7 Vhc 8.02979201109k  ; Kc
+
+Vhc 6 8 0          ; Voltage source que controla a corrente que passa em Hc
+
+Gb 5 3 2 4 7.11172371179m  ; Kb
+
+
+
+
+
+
+
+
+
+***********************************
+
+.control
+
+
+*set hcopypscolor=0
+
+*set color0=white
+
+*set color1=black
+
+*set color2=red
+
+*set color3=blue
+
+*set color4=violet
+
+*set color5=rgb:3/8/0
+
+*set color6=rgb:4/0/0
+
+
+
+op
+
+
+
+echo "********************************************"
+
+echo  "Estado inicial"
+
+echo "********************************************"
+
+echo "table_TAB"
+
+print all
+
+echo "table_END"
+
+*echo "********************************************"
+
+
+
+*echo "********************************************"
+
+*echo  "Análise transitória"
+
+*echo "********************************************"
+
+*tran 1e-5 10e-3
+
+
+
+*hardcopy trans.ps v(2) v(4) v(2)-v(4)
+
+*echo trans_FIG
+
+
+
+*echo "********************************************"
+
+
+
+
+
+*plot i(Va)
+
+*plot i(Hc)
+
+
+
+*plot v(6)
+
+*plot (v(6)/2.001k) 
+
+
+quit
+.endc
+
+.end

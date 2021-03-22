@@ -9,7 +9,7 @@ Octave.
 The circuit consists of four loops, where on the top left loop (loop 1) flows a current $I_a$,
 on the top right (loop 2) flows a current $I_b$, on the bottom left (loop 3) a current $I_c$
 and on bottom right loop (loop 4) a current $I_d$, all of them assigned to be flowing counterclockwise for
-the mesh analysis. The voltage and current sources, $v_a$ and $I_d$, receive countinuous inputs and in order to analyse the circuit
+the mesh analysis. The voltage and current sources, $V_a$ and $I_d$, receive countinuous inputs and in order to analyse the circuit
 we have to measure the voltage in each node and the current flowing in each loop.
 For this purpose we will apply both the Kirchhoff Voltage Law (KVL) and Kirchhoff
 Current Law (KCL). \par
@@ -34,6 +34,8 @@ Starting the analysis using KVL, we obtain four equations correspondent to each 
   I_d = I_d.
   \label{eq:kvl4}
 \end{equation}
+
+\vspace{0.2cm}
 
 Using Octave, we can solve this system of equations easily using matrix operations obtaining the following
 solution for the currents:
@@ -91,6 +93,8 @@ in order to have a solvable system of equations, therefore we obtain the followi
   \frac{V_4}{R_4} + \frac{V_4 - V_2}{R_3} + \frac{V_4 - V_5}{R_5} + \frac{V_7 - V_6}{R_7} = -I_d,
   \label{eq:kcl8}
 \end{equation}
+
+\vspace{0.2cm}
 
 being \textbf{Equation \ref{eq:kcl1}} referent to node 0,\textbf{Equation \ref{eq:kcl2}} to node 1, \textbf{Equation \ref{eq:kcl3}} to node 2,
 \textbf{Equation \ref{eq:kcl4}} to node 3, \textbf{Equation \ref{eq:kcl5}} to node 5, \textbf{Equation \ref{eq:kcl6}} to node 6, \textbf{Equation \ref{eq:kcl7}}

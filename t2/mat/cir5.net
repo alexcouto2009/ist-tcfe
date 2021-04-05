@@ -1,0 +1,130 @@
+Trabalho laboratorial 1
+
+*
+
+*Script simulação NGSPICE
+
+*
+
+***********************************
+
+
+
+*Alexandre Couto, 95766
+
+*Bruno Pinto, 95774
+
+*Hugo Aranha, 95796
+
+
+
+***********************************
+
+*Descrição circuito
+
+
+
+
+.include cir51.txt
+
+
+*Va 1 0 5.1951993125      ; Tensão
+
+
+
+*R1 1 2 1.03055897104k      ; Resistência R1
+
+*R2 2 3 2.07633317652k      ; Resistência R2
+
+*R3 2 5 3.11228971368k      ; Resistência R3
+
+*R4 5 0 4.1814130542k       ; Resistência R4
+
+*R5 5 6 3.06747464193k      ; Resistência R5
+
+*R6 0 7 2.01035149284k      ; Resistência R6
+
+*R7 8 9 1.00587624853k      ; Resistência R7
+
+
+
+*Hd 5 9 Vhd 8.02979201109k  ; Kc
+
+*Vhd 7 8 0                  ; Voltage source que controla a corrente que passa em Hd
+
+*Gb 6 3 2 5 7.11172371179m  ; Kb
+
+*C1 6 9 1.04139652596u      ; condensador
+
+
+
+
+.include cir52.txt
+
+
+.control
+
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+op
+
+
+
+echo "********************************************"
+
+echo  "Estado inicial"
+
+echo "********************************************"
+
+*echo "table_TAB"
+
+print all
+
+*echo "table_END"
+
+*echo "********************************************"
+
+tran 1e-5 20e-3
+
+
+hardcopy trans2.ps v(6) v(1)
+echo trans2_FIG
+
+*hardcopy trans3.ps v(1)
+*echo trans3_FIG
+
+ac dec 100 0.1 1e6
+hardcopy trans4.ps db(v(6)-v(9))
+echo trans4_FIG
+hardcopy trans5.ps 180/pi*ph(v(6)-v(9))-90
+echo trans5_FIG
+
+hardcopy trans6.ps vdb(1)
+echo trans6_FIG
+hardcopy trans7.ps 180/pi*ph(v(1))-90
+echo trans7_FIG
+
+hardcopy trans8.ps vdb(6)
+echo trans8_FIG
+hardcopy trans9.ps 180/pi*ph(v(6))-90
+echo trans9_FIG
+
+
+
+*plot 90/pi*phase (V(6)-V(8))
+*plot mag(v(6))
+*plot v(6)
+
+quit
+.endc
+
+.end
+
+

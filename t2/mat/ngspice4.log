@@ -1,0 +1,69 @@
+
+Circuit: trabalho laboratorial 1
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 1
+********************************************
+Estado inicial
+********************************************
+v(1) = 0.000000e+00
+v(2) = 0.000000e+00
+v(3) = 0.000000e+00
+v(5) = 0.000000e+00
+v(6) = 0.000000e+00
+v(7) = 0.000000e+00
+v(8) = 0.000000e+00
+v(9) = 0.000000e+00
+hd#branch = 0.000000e+00
+vhd#branch = 0.000000e+00
+vs#branch = 0.000000e+00
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+1                                            0
+2                                   -5.487e-13
+3                                 -1.70651e-12
+5                                 -4.70291e-13
+6                                      8.67891
+7                                  1.88579e-13
+8                                  1.88579e-13
+9                                  2.82934e-13
+hd#branch                           0.00282934
+vhd#branch                        -9.38038e-17
+vs#branch                          -5.3243e-16
+
+
+No. of Data Rows : 2008
+
+The file "trans2.ps" may be printed on a postscript printer.
+trans2_FIG
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 701
+
+The file "trans4.ps" may be printed on a postscript printer.
+trans4_FIG
+
+The file "trans5.ps" may be printed on a postscript printer.
+trans5_FIG
+
+The file "trans6.ps" may be printed on a postscript printer.
+trans6_FIG
+
+The file "trans7.ps" may be printed on a postscript printer.
+trans7_FIG
+
+The file "trans8.ps" may be printed on a postscript printer.
+trans8_FIG
+
+The file "trans9.ps" may be printed on a postscript printer.
+trans9_FIG
+ngspice-31 done

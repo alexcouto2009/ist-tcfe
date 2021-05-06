@@ -1,0 +1,188 @@
+Trabalho laboratorial 3
+
+*
+
+*Script simulação NGSPICE
+
+*
+
+***********************************
+
+
+
+*Alexandre Couto, 95766
+
+*Bruno Pinto, 95774
+
+*Hugo Aranha, 95796
+
+
+
+***********************************
+
+*Descrição circuito
+
+
+vs 1 0 0 sin(0 14.8 50)
+
+************Envelope detector*********
+
+
+Dp1 1 2 diode
+
+Dp2 0 2 diode
+
+Dp3 3 0 diode
+
+Dp4 3 1 diode
+
+
+
+C1 2 3 15u
+
+**********Voltage regulator*********
+
+
+R2 23 3 5 12.1k
+
+Ds1 2 4 diode
+
+Ds2 4 5 diode
+
+Ds3 5 6 diode
+
+Ds4 6 7 diode
+
+Ds5 7 8 diode
+
+Ds6 8 9 diode
+
+Ds7 9 10 diode
+
+Ds8 10 11 diode
+
+Ds9 11 12 diode
+
+Ds11 12 13 diode
+
+Ds12 13 14 diode
+
+Ds13 14 15 diode
+
+Ds14 15 16 diode
+
+Ds15 16 17 diode
+
+Ds16 17 18 diode
+
+Ds17 18 19 diode
+
+Ds18 19 20 diode
+
+Ds19 20 21 diode
+
+Ds20 21 22 diode
+
+Ds21 22 23 diode
+
+
+
+**************************************
+
+
+.MODEL diode D
+
+.op 
+.end
+
+
+
+.control
+
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+
+
+tran 1e-4 220e-3 20e-3
+
+*plot v(2)-v(3)
+
+*plot v(2)-v(23)
+
+let v0 = v(2)-v(23)
+
+meas tran average AVG v0 from=20m to=220m
+
+meas tran max MAX v0 from=20m to=220m
+
+meas tran min MIN v0 from=20m to=220m
+
+*plot v0-12
+
+
+let aux = max - min
+let aux1 = abs(average-12)
+let aux2 = aux + aux1 + 1e-6
+let cost = 2.5+27.1
+let merit = 1/(cost*aux2)
+
+
+let ripple = max - min
+
+echo "table1_TAB"
+
+print average
+
+echo "table1_END"
+
+**************************
+
+echo "table2_TAB"
+
+print max
+print min
+print ripple
+
+echo "table2_END"
+
+**************************
+let output_envelope_detector = v(2)-v(3)
+
+let output_voltage_regulator = v(2)-v(23)
+
+let output_difference = v0-12
+
+
+hardcopy envdec.ps output_envelope_detector
+echo envdec_FIG
+
+hardcopy volreg.ps output_voltage_regulator
+echo volreg_FIG
+
+hardcopy final.ps output_difference
+echo final_FIG
+
+***************************
+
+echo "table3_TAB"
+print cost
+print merit
+
+echo "table3_END"
+
+*print aux
+
+
+quit
+.endc
+
+.end
+
+
